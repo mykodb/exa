@@ -17,8 +17,9 @@ object ModCreativeModeTabs {
                 .withTabsBefore(CreativeModeTabs.COMBAT)
                 .icon { ModItems.B.get().defaultInstance }
                 .displayItems { _: ItemDisplayParameters, output: CreativeModeTab.Output ->
-                    output.accept(ModBlocks.A.get())
-                    output.accept(ModItems.B.get())
+                    output.accept(ModBlocks.A)
+                    output.accept(ModItems.B)
+                    output.accept(ModItems.RICE_PULP_BUCKET)
                 }.build()
         })
 
