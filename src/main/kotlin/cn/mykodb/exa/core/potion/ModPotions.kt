@@ -7,10 +7,13 @@ import net.minecraft.world.item.alchemy.Potion
 import net.neoforged.neoforge.registries.DeferredHolder
 
 object ModPotions {
-    val TELEPORT_I: DeferredHolder<Potion, Potion> = POTION.register("teleport_1")
+    val TELEPORT_1: DeferredHolder<Potion, Potion> = POTION.register("teleport_potion_1")
     {-> Potion(MobEffectInstance(ModEffects.TELEPORT, 100, 0)) }
-    val TELEPORT_II: DeferredHolder<Potion, Potion> = POTION.register("teleport_2")
+    val TELEPORT_2: DeferredHolder<Potion, Potion> = POTION.register("teleport_potion_2")
     {-> Potion(MobEffectInstance(ModEffects.TELEPORT, 100, 1)) }
+    init {
+        TELEPORT_1.id.path
+    }
 
     fun register(){}
 }

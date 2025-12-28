@@ -2,6 +2,7 @@ package cn.mykodb.exa.core.event
 
 import cn.mykodb.exa.ExaMod.Companion.MODID
 import cn.mykodb.exa.core.datagen.ModLanguageProvider
+import cn.mykodb.exa.core.datagen.ModRecipesProvider
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
@@ -13,5 +14,6 @@ object GatherDataEventHandler {
     fun onGatherData(event: GatherDataEvent) {
         event.createProvider(ModLanguageProvider::EnUs)
         event.createProvider(ModLanguageProvider::ZhCn)
+        event.createProvider(::ModRecipesProvider)
     }
 }

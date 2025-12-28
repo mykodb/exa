@@ -24,3 +24,6 @@ runs
 run-data
 
 repo
+
+# 数据生成
+/src/generated/*

@@ -14,6 +14,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 object ClientEventHandler {
     @SubscribeEvent
     fun onClientEvent( event: FMLClientSetupEvent){
+
     }
 
     @SubscribeEvent
@@ -25,6 +26,7 @@ object ClientEventHandler {
     }
     @SubscribeEvent
     fun onRegisterClientExtensions( event: RegisterClientExtensionsEvent) {
+        // 大概在1.21后需要就需要注册液体类型扩展
         event.registerFluidType(
             RicePulpFluidType.RicePulpFluidTypeExtensions(),
             RICE_PULP_FLUID_TYPE
