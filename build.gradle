@@ -19,7 +19,6 @@ version = mod_version
 group = mod_group_id
 
 repositories {
-    // Add here additional repositories if required by some of the dependencies below.
     maven {
         name = "Jared's Maven"
         url = uri("https://maven.blamejared.com/")
@@ -34,7 +33,7 @@ base {
     archivesName = mod_id
 }
 
-// Mojang ships Java 21 to end users in 1.21.1, so mods should target Java 21.
+// Mojang 在 1.21.1 版本中向终端用户发布了 Java 21，所以模组应该针对 Java 21。
 java.toolchain.languageVersion = JavaLanguageVersion.of(21)
 
 neoForge {

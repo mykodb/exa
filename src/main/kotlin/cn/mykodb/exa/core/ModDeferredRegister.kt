@@ -1,18 +1,11 @@
 package cn.mykodb.exa.core
 
 import cn.mykodb.exa.ExaMod
-import cn.mykodb.exa.core.block.ModBlockEntityType
-import cn.mykodb.exa.core.block.ModBlocks
-import cn.mykodb.exa.core.effect.ModEffects
-import cn.mykodb.exa.core.enchantment.ModEnchantments
-import cn.mykodb.exa.core.fluid.ModFluidTypes
-import cn.mykodb.exa.core.fluid.ModFluids
-import cn.mykodb.exa.core.item.ModCreativeModeTabs
-import cn.mykodb.exa.core.item.ModItems
-import cn.mykodb.exa.core.potion.ModPotions
+import cn.mykodb.exa.core.register.*
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.effect.MobEffect
+import net.minecraft.world.inventory.MenuType
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.alchemy.Potion
 import net.minecraft.world.item.enchantment.Enchantment
@@ -28,30 +21,42 @@ object ModDeferredRegister {
     // 物品
     val ITEMS: DeferredRegister.Items =
         DeferredRegister.createItems(ExaMod.MODID)
+
     // 方块
     val BLOCKS: DeferredRegister.Blocks =
         DeferredRegister.createBlocks(ExaMod.MODID)
+
     // 方块实体类型
     val BLOCK_ENTITY_TYPE: DeferredRegister<BlockEntityType<*>> =
         DeferredRegister.create(BuiltInRegistries.BLOCK_ENTITY_TYPE, ExaMod.MODID)
+
     // 创造选项栏
     val CREATIVE_MODE_TABS: DeferredRegister<CreativeModeTab> =
         DeferredRegister.create(Registries.CREATIVE_MODE_TAB, ExaMod.MODID)
+
     // 流体类型
     val FLUID_TYPES: DeferredRegister<FluidType> =
         DeferredRegister.create(NeoForgeRegistries.Keys.FLUID_TYPES, ExaMod.MODID)
+
     // 流体
     val FLUIDS: DeferredRegister<Fluid> =
         DeferredRegister.create(Registries.FLUID, ExaMod.MODID)
+
     // 状态效果
     val MOB_EFFECT: DeferredRegister<MobEffect> =
         DeferredRegister.create(Registries.MOB_EFFECT, ExaMod.MODID)
+
     // 药水
     val POTION: DeferredRegister<Potion> =
         DeferredRegister.create(Registries.POTION, ExaMod.MODID)
+
     // 附魔
     val ENCHANTMENT: DeferredRegister<Enchantment> =
-        DeferredRegister.create(Registries.ENCHANTMENT, ExaMod.MODID);
+        DeferredRegister.create(Registries.ENCHANTMENT, ExaMod.MODID)
+
+    // 菜单
+    val MENUS: DeferredRegister<MenuType<*>> =
+        DeferredRegister.create(Registries.MENU, ExaMod.MODID)
 
     fun register(modbus: IEventBus) {
         ITEMS.register(modbus)
@@ -72,5 +77,7 @@ object ModDeferredRegister {
         ModPotions.register()
         ENCHANTMENT.register(modbus)
         ModEnchantments.register()
+        MENUS.register(modbus)
+        ModMenuTypes.register()
     }
 }

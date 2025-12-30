@@ -1,14 +1,12 @@
 package cn.mykodb.exa.core.datagen
 
 import cn.mykodb.exa.ExaMod.Companion.MODID
-import cn.mykodb.exa.core.effect.ModEffects
-import cn.mykodb.exa.core.potion.ModPotions
+import cn.mykodb.exa.core.register.ModEffects
+import cn.mykodb.exa.core.register.ModPotions
 import net.minecraft.data.PackOutput
-import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.item.alchemy.Potion
 import net.neoforged.neoforge.common.data.LanguageProvider
 import net.neoforged.neoforge.registries.DeferredHolder
-import java.util.function.Supplier
 
 object ModLanguageProvider {
 

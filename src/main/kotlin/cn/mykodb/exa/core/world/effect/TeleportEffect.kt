@@ -1,5 +1,6 @@
-package cn.mykodb.exa.core.effect
+package cn.mykodb.exa.core.world.effect
 
+import cn.mykodb.exa.core.register.ModEffects
 import net.minecraft.core.BlockPos
 import net.minecraft.core.particles.ParticleOptions
 import net.minecraft.world.effect.MobEffect
@@ -7,7 +8,7 @@ import net.minecraft.world.effect.MobEffectCategory
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.PathfinderMob
 
-class EffectTeleport(category: MobEffectCategory, color: Int, particle: ParticleOptions) :
+class TeleportEffect(category: MobEffectCategory, color: Int, particle: ParticleOptions) :
     MobEffect(category, color, particle) {
 
     override fun applyEffectTick(livingEntity: LivingEntity, amplifier: Int): Boolean {

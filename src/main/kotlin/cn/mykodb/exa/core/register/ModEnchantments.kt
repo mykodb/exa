@@ -1,4 +1,4 @@
-package cn.mykodb.exa.core.enchantment
+package cn.mykodb.exa.core.register
 
 object ModEnchantments {
     fun register() {}

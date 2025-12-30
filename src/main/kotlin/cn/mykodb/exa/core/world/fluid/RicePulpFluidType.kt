@@ -1,4 +1,4 @@
-package cn.mykodb.exa.core.fluid
+package cn.mykodb.exa.core.world.fluid
 
 import net.minecraft.client.Minecraft
 import net.minecraft.core.particles.ParticleTypes

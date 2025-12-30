@@ -1,4 +1,4 @@
-package cn.mykodb.exa.core.block
+package cn.mykodb.exa.core.register
 
 object ModBlockEntityType {
     fun register() {}

@@ -1,7 +1,7 @@
 package cn.mykodb.exa.core.event
 
 import cn.mykodb.exa.ExaMod
-import cn.mykodb.exa.core.potion.ModPotions
+import cn.mykodb.exa.core.register.ModPotions
 import net.minecraft.world.item.Items
 import net.minecraft.world.item.alchemy.Potions
 import net.neoforged.bus.api.SubscribeEvent
@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent
 
 //注册新酿造配方的事件
 //在客户端和服务器端，主事件总线上都被触发
-@EventBusSubscriber(modid = ExaMod.MODID)
+@EventBusSubscriber(modid = ExaMod.Companion.MODID)
 object RegisterBrewingRecipes {
     @SubscribeEvent
     fun registerBrewingRecipes(event: RegisterBrewingRecipesEvent) {
