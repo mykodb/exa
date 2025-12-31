@@ -7,55 +7,89 @@ import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.effect.MobEffectCategory
 import net.minecraft.world.entity.LivingEntity
 import net.minecraft.world.entity.PathfinderMob
+import net.minecraft.world.level.Level
+import net.minecraft.world.phys.Vec3
+import net.minecraft.world.phys.shapes.CollisionContext
 
 class TeleportEffect(category: MobEffectCategory, color: Int, particle: ParticleOptions) :
     MobEffect(category, color, particle) {
+    // 获取上方安全的坐标
+    fun getAboveSafePos(startPos:Vec3, level: Level): Vec3? {
+        var searchY: Double = startPos.y
+        if (searchY < level.minBuildHeight) {
+            searchY = level.minBuildHeight.toDouble()
+        }
+        while (searchY < level.maxBuildHeight) {
+            val currentPos = BlockPos.containing(startPos.x, searchY, startPos.z)
+            val blockState = level.getBlockState(currentPos)
+            val collisionShape = blockState.getCollisionShape(level, currentPos, CollisionContext.empty())
+            if (collisionShape.isEmpty) {
+                return Vec3(startPos.x,searchY,startPos.z)
+            }
+            searchY++
+        }
+        return null
+    }
+    // 传送并广播，中断寻路
+    fun LivingEntity.teleportTo(targetPos:Vec3) {
+        this.teleportTo(targetPos.x, targetPos.y, targetPos.z)
+        this.level().broadcastEntityEvent(this, 46)
+        if (this is PathfinderMob) {
+            this.getNavigation().stop()
+        }
+    }
+    // 在坐标范围进行随机传送，并有三次重试机会
+    fun LivingEntity.randomTeleportTo(targetPos:Vec3,current: Int): Boolean {
+        val attempts = 3
+        for (i in 1..attempts) {
+            val currentRange = current * i
+            val randomPos = targetPos.add(
+                (random.nextDouble() - 0.5) * 2 * currentRange,
+                (random.nextDouble() - 0.5) * 2 * currentRange,
+                (random.nextDouble() - 0.5) * 2 * currentRange
+            )
+            val success = this.randomTeleport(randomPos.x, randomPos.y, randomPos.z, true)
+            if (success) {
+                return true
+            }
+        }
+        return false
+    }
 
     override fun applyEffectTick(livingEntity: LivingEntity, amplifier: Int): Boolean {
-        val lookVec = livingEntity.lookAngle
         val level = livingEntity.level()
         val random = livingEntity.random
+        val lookVec = livingEntity.lookAngle
         val baseRange = (amplifier * 16) + 16
         val baseDistance = random.nextInt((baseRange * 0.8).toInt(), baseRange)
-        val targetPos = livingEntity.position().add(
+
+        val startPos = livingEntity.position().add(
             lookVec.x * baseDistance,
             lookVec.y * baseDistance,
             lookVec.z * baseDistance
         )
-        var searchY = targetPos.y.toInt()
-        var flag = false
-        if (level.isLoaded(BlockPos.containing(targetPos))) {
-            while (searchY < level.maxBuildHeight) {
-                val currentPos = BlockPos(targetPos.x.toInt(), searchY, targetPos.z.toInt())
-                val blockState = level.getBlockState(currentPos)
-                if (!blockState.isSolid) {
-                    flag = true
-                    break
-                } else {
-                    searchY++
+        var targetPos: Vec3? = null
+        var success = false
+        if (level.isLoaded(BlockPos.containing(startPos))) {
+            targetPos = getAboveSafePos(startPos,level)
+            if (targetPos != null) {
+                livingEntity.teleportTo(targetPos)
+                if (level.noCollision(livingEntity)){
+                    success = true
+                }
+            }
+        }else{
+            livingEntity.teleportTo(startPos)
+            targetPos = getAboveSafePos(startPos,level)
+            if (targetPos != null) {
+                livingEntity.teleportTo(targetPos)
+                if (level.noCollision(livingEntity)){
+                    success = true
                 }
             }
         }
-        if (!flag) {
-            val attempts = 3
-            for (i in 1..attempts) {
-                val currentRange = baseRange * i
-                val randomPos = targetPos.add(
-                    (random.nextDouble() - 0.5) * 2 * currentRange,
-                    (random.nextDouble() - 0.5) * 2 * currentRange,
-                    (random.nextDouble() - 0.5) * 2 * currentRange
-                )
-                val success = livingEntity.randomTeleport(randomPos.x, randomPos.y, randomPos.z, true)
-                if (success) {
-                    break
-                }
-            }
-        } else {
-            livingEntity.teleportTo(targetPos.x, searchY.toDouble(), targetPos.z)
-            level.broadcastEntityEvent(livingEntity, 46)
-            if (livingEntity is PathfinderMob) {
-                livingEntity.getNavigation().stop()
-            }
+        if(!success){
+            livingEntity.randomTeleportTo(startPos,baseRange)
         }
         livingEntity.removeEffect(ModEffects.TELEPORT)
         return super.applyEffectTick(livingEntity, amplifier)
