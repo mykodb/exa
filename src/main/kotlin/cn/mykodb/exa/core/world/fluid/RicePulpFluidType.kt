@@ -8,11 +8,12 @@ import net.minecraft.world.level.block.Blocks
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.api.distmarker.OnlyIn
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions
+import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent
 import net.neoforged.neoforge.common.SoundActions
 import net.neoforged.neoforge.fluids.FluidType
 
 class RicePulpFluidType: FluidType(Properties.create()
-    .descriptionId("block.shanwei_seafood.rice_pulp")
+    .descriptionId("block.fluid")
     .fallDistanceModifier(0.0f)
     .canExtinguish(true)
     .canConvertToSource(true)
@@ -21,8 +22,20 @@ class RicePulpFluidType: FluidType(Properties.create()
     .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
     .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
     .canHydrate(true)
-    .addDripstoneDripping(0.17578125f, ParticleTypes.DRIPPING_DRIPSTONE_WATER, Blocks.WATER_CAULDRON, SoundEvents.POINTED_DRIPSTONE_DRIP_WATER_INTO_CAULDRON)
-){
+    ){
+
+    /**
+     * [initializeClient] 方法注册客户端扩展在1.21后弃用
+     *
+     * 新方法 使用 [RegisterClientExtensionsEvent] 进行注册
+     * ```
+     * // 在1.21后弃用
+     * override fun initializeClient(consumer: Consumer<IClientFluidTypeExtensions>) {
+     *     consumer.accept(RicePulpFluidTypeExtensions())
+     * }
+     * ```
+     * @see cn.mykodb.exa.core.event.ClientEventHandler.onRegisterClientExtensions
+     */
     @OnlyIn(Dist.CLIENT)
     class RicePulpFluidTypeExtensions : IClientFluidTypeExtensions {
         private companion object {
@@ -31,7 +44,6 @@ class RicePulpFluidType: FluidType(Properties.create()
             private val WATER_FLOW = ResourceLocation.withDefaultNamespace("block/water_flow")
             private val WATER_OVERLAY = ResourceLocation.withDefaultNamespace("block/water_overlay")
         }
-
         override fun getStillTexture(): ResourceLocation = WATER_STILL
         override fun getFlowingTexture(): ResourceLocation = WATER_FLOW
         override fun getOverlayTexture(): ResourceLocation = WATER_OVERLAY

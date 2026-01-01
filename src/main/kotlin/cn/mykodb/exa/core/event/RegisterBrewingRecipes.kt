@@ -10,7 +10,7 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent
 
 //注册新酿造配方的事件
 //在客户端和服务器端，主事件总线上都被触发
-@EventBusSubscriber(modid = ExaMod.Companion.MODID)
+@EventBusSubscriber(modid = ExaMod.MODID)
 object RegisterBrewingRecipes {
     @SubscribeEvent
     fun registerBrewingRecipes(event: RegisterBrewingRecipesEvent) {

@@ -5,6 +5,7 @@ import net.minecraft.network.FriendlyByteBuf
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.entity.player.Player
 import net.minecraft.world.inventory.AbstractContainerMenu
+import net.minecraft.world.inventory.Slot
 import net.minecraft.world.item.ItemStack
 
 class ExaMenu(
@@ -15,7 +16,15 @@ class ExaMenu(
     EXA_MENU.get(),
     containerId
 ) {
-    val player: Player = playerInv.player
+
+    val playerInventorySlots = ArrayList<Slot>()
+
+    init {
+        for (i in 0..35) {
+            val slot: Slot = Slot(playerInv, i, 0, 0)
+            playerInventorySlots.add(this.addSlot(slot))
+        }
+    }
 
     override fun quickMoveStack(player: Player, index: Int): ItemStack {
         return ItemStack.EMPTY
