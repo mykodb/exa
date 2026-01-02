@@ -1,10 +1,13 @@
 package cn.mykodb.exa.core.event
 
 import cn.mykodb.exa.ExaMod.Companion.MODID
+import cn.mykodb.exa.core.register.ModFluidTypes
+import cn.mykodb.exa.core.register.ModFluids
 import cn.mykodb.exa.core.world.gui.ExaScreen
 import cn.mykodb.exa.core.register.ModMenuTypes
-import cn.mykodb.exa.core.register.ModFluidTypes.RICE_PULP_FLUID_TYPE
-import cn.mykodb.exa.core.world.fluid.RicePulpFluidType
+import cn.mykodb.exa.core.world.fluid.EnderMatrixFluidType
+import net.minecraft.client.renderer.ItemBlockRenderTypes
+import net.minecraft.client.renderer.RenderType
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
@@ -22,6 +25,7 @@ object ClientEventHandler {
 
     @SubscribeEvent
     fun registerScreen(event: RegisterMenuScreensEvent) {
+        // 注册屏幕绑定菜单
         event.register(
             ModMenuTypes.EXA_MENU.get(),
             ::ExaScreen
@@ -31,17 +35,16 @@ object ClientEventHandler {
     @SubscribeEvent
     fun onRegisterBlockColors(event: RegisterColorHandlersEvent.Block) {
         // 设置流体渲染层
-        // 不需要半透明 注释掉了
-        //ItemBlockRenderTypes.setRenderLayer(ModFluids.RICE_PULP_FLUID.still.get(), RenderType.translucent())
-        //ItemBlockRenderTypes.setRenderLayer(ModFluids.RICE_PULP_FLUID.flowing.get(), RenderType.translucent())
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.ENDER_MATRIX.still.get(), RenderType.translucent())
+        ItemBlockRenderTypes.setRenderLayer(ModFluids.ENDER_MATRIX.flowing.get(), RenderType.translucent())
     }
 
     @SubscribeEvent
     fun onRegisterClientExtensions( event: RegisterClientExtensionsEvent) {
         // 大概在1.21后需要就需要注册液体类型扩展
         event.registerFluidType(
-            RicePulpFluidType.RicePulpFluidTypeExtensions(),
-            RICE_PULP_FLUID_TYPE
+            EnderMatrixFluidType.RicePulpFluidTypeExtensions(),
+            ModFluidTypes.ENDER_MATRIX_TYPE
         )
     }
 }

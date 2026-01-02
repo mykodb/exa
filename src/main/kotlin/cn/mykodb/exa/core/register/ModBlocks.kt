@@ -11,12 +11,10 @@ import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
 
 object ModBlocks {
-    val A = registerSimpleBlockItem("a")
 
-    val RICE_PULP_BLOCK: DeferredBlock<LiquidBlock> = ModDeferredRegister.BLOCKS.register("rice_pulp_block")
-    {-> LiquidBlock(
-        ModFluids.RICE_PULP_FLUID.still.get(),
-        BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).lightLevel { 15 })
+    val ENDER_MATRIX_BLOCK: DeferredBlock<LiquidBlock> = ModDeferredRegister.BLOCKS.register("rice_pulp_block")
+    {-> LiquidBlock(ModFluids.ENDER_MATRIX.still.get(),
+        BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).lightLevel{15})
     }
 
     fun registerSimpleBlockItem(

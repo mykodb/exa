@@ -1,7 +1,7 @@
 package cn.mykodb.exa.core.world.gui
 
-import cn.mykodb.exa.core.world.gui.ClientSlotManager.clientX
-import cn.mykodb.exa.core.world.gui.ClientSlotManager.clientY
+import cn.mykodb.exa.core.world.gui.base.ClientSlotManager.clientX
+import cn.mykodb.exa.core.world.gui.base.ClientSlotManager.clientY
 import net.minecraft.client.gui.GuiGraphics
 import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
@@ -11,65 +11,64 @@ import net.minecraft.world.inventory.Slot
 class ExaScreen(menu: ExaMenu, playerInv: Inventory, title: Component) :
     AbstractContainerScreen<ExaMenu>(menu,playerInv, title) {
 
-    var hideGui: Boolean = false
+    private var hideGui: Boolean = false
+
+    companion object{
+        fun isHideJei(): Boolean = true
+        fun isHideGui(): Boolean = false
+    }
 
     override fun init() {
         super.init()
-        setHideGui()
+        if (isHideGui()){
+            this.minecraft?.options?.let {
+                hideGui = it.hideGui
+                it.hideGui = true
+            }
+        }
     }
+
+
 
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
         super.render(guiGraphics, mouseX, mouseY, partialTick)
-        addPlayerInvLongSlots(this.menu.playerInventorySlots,10, 10)
+
+        addPlayerInvLongSlots(this.menu.playerInventorySlots,-74, 130)
+        addPlayerInvSlots(this.menu.playerInventorySlots,6, 86)
+        //addContainerSlots(this.menu.playerInventorySlots,6, 10)
     }
 
     override fun renderBackground(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
 
     }
 
-    override fun renderSlot(guiGraphics: GuiGraphics, slot: Slot) {
-        val x = slot.clientX
-        val y = slot.clientY
-        val itemStack = slot.item
-        guiGraphics.renderItem(itemStack,x,y,itemStack.count)
-        guiGraphics.renderItemDecorations(font,itemStack,x,y)
-    }
 
-
-    // 复写方法改用客户端pos
-    override fun renderSlotHighlight(guiGraphics: GuiGraphics, slot: Slot, mouseX: Int, mouseY: Int, partialTick: Float) {
-        if (slot.isHighlightable) {
-            renderSlotHighlight(guiGraphics, slot.clientX, slot.clientY, 0, getSlotColor(slot.index))
+    fun addContainerSlots(slots:ArrayList<Slot>, x: Int, y: Int) {
+        for (i in 0..<slots.count()) {
+            slots[i].clientX = x + (i % 9) * 18
+            slots[i].clientY = y + ((i / 9) - 1) * 18
         }
     }
 
-    // 复写方法改用客户端pos
-    override fun isHovering(slot: Slot, mouseX: Double, mouseY: Double): Boolean {
-        return this.isHovering(slot.clientX, slot.clientY,16,16,mouseX, mouseY)
-    }
-
-    override fun removed() {
-        minecraft?.let { it.options.hideGui = hideGui }
-        super.removed()
-    }
-
-    fun setHideGui(){
-        this.minecraft?.options?.let {
-            hideGui = it.hideGui
-            it.hideGui = true
+    fun addPlayerInvSlots(slots:ArrayList<Slot>, x: Int, y: Int) {
+        for (i in 0..<slots.count()) {
+            if (i >= 9) {
+                slots[i].clientX = x + (i % 9) * 18
+                slots[i].clientY = y + ((i / 9) - 1) * 18
+            }else{
+                slots[i].clientX = x + (i % 18) * 18
+                slots[i].clientY = y + 59
+            }
         }
     }
 
     fun addPlayerInvLongSlots(slots:ArrayList<Slot>,x: Int, y: Int) {
-        for (i in 0..35) {
-            val slotX: Int = x + (i % 18) * 18
-            val slotY: Int = y + (i / 18) * 18
-            slots[i].clientX = slotX
-            slots[i].clientY = slotY
+        for (i in 0..<slots.count()) {
+            slots[i].clientX =  x + (i % 18) * 18
+            slots[i].clientY = y + (i / 18) * 18
         }
     }
 
     @Deprecated("不会被调用") // 复写 renderBackground 使 renderBg 不被调用
     override fun renderBg(guiGraphics: GuiGraphics, partialTick: Float, mouseX: Int, mouseY: Int){}
-
 }

@@ -13,7 +13,9 @@ object ModLanguageProvider {
 
     class EnUs(output: PackOutput) : LanguageProvider(output, MODID, "en_us") {
         override fun addTranslations() {
-            addEffect(ModEffects.TELEPORT, "传送")
+            addEffect(ModEffects.TELEPORT, "Teleport")
+            addPotions(ModPotions.TELEPORT_1,"Potions of Teleport","Splash Potion of Teleport","Lingering Potion of Teleport ","Arrow of Teleport")
+            addPotions(ModPotions.TELEPORT_2,"Potions of Teleport","Splash Potion of Teleport","Lingering Potion of Teleport ","Arrow of Teleport")
         }
     }
 

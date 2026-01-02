@@ -14,11 +14,9 @@ object ModCreativeModeTabs {
             CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.exa"))
                 .withTabsBefore(CreativeModeTabs.COMBAT)
-                .icon { ModItems.B.get().defaultInstance }
+                .icon { ModItems.OPEN_MENU_ITEM.get().defaultInstance }
                 .displayItems { _: CreativeModeTab.ItemDisplayParameters, output: CreativeModeTab.Output ->
-                    output.accept(ModBlocks.A)
-                    output.accept(ModItems.B)
-                    output.accept(ModItems.RICE_PULP_BUCKET)
+                    output.accept(ModItems.ENDER_MATRIX_BUCKET)
                     output.accept(ModItems.OPEN_MENU_ITEM)
                 }.build()
         })

@@ -1,10 +1,8 @@
 package cn.mykodb.exa.core.world.fluid
 
 import net.minecraft.client.Minecraft
-import net.minecraft.core.particles.ParticleTypes
 import net.minecraft.resources.ResourceLocation
 import net.minecraft.sounds.SoundEvents
-import net.minecraft.world.level.block.Blocks
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.api.distmarker.OnlyIn
 import net.neoforged.neoforge.client.extensions.common.IClientFluidTypeExtensions
@@ -12,7 +10,7 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.common.SoundActions
 import net.neoforged.neoforge.fluids.FluidType
 
-class RicePulpFluidType: FluidType(Properties.create()
+class EnderMatrixFluidType: FluidType(Properties.create()
     .descriptionId("block.fluid")
     .fallDistanceModifier(0.0f)
     .canExtinguish(true)

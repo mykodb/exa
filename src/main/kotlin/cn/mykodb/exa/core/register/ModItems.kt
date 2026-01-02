@@ -14,21 +14,15 @@ object ModItems {
     val OPEN_MENU_ITEM: DeferredItem<OpenMenuItem> = ModDeferredRegister.ITEMS.register("open_metal_item")
     { -> OpenMenuItem(Item.Properties()) }
 
-    val B: DeferredItem<Item> = ModDeferredRegister.ITEMS.registerSimpleItem(
-        "b",
-        Item.Properties().food(FoodProperties.Builder().alwaysEdible().nutrition(1).saturationModifier(2f).build())
-    )
-
-    val RICE_PULP_BUCKET: DeferredItem<BucketItem> = ModDeferredRegister.ITEMS.register("rice_pulp_bucket")
+    val ENDER_MATRIX_BUCKET: DeferredItem<BucketItem> = ModDeferredRegister.ITEMS.register("rice_pulp_bucket")
     { ->
         BucketItem(
-            ModFluids.RICE_PULP_FLUID.still.get(),
+            ModFluids.ENDER_MATRIX.still.get(),
             Item.Properties()
                 .craftRemainder(Items.BUCKET)
                 .stacksTo(1)
         )
     }
-
 
     fun register() {}
 }

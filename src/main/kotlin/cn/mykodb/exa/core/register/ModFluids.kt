@@ -11,8 +11,8 @@ import java.util.function.Supplier
 
 object ModFluids {
 
-    val RICE_PULP_FLUID = RetentionFluid("a_fluid", ModFluidTypes.RICE_PULP_FLUID_TYPE)
-        .apply { properties.slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.RICE_PULP_BLOCK).bucket(ModItems.RICE_PULP_BUCKET) }
+    val ENDER_MATRIX= RetentionFluid("ender_matrix", ModFluidTypes.ENDER_MATRIX_TYPE)
+        .apply { properties.slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.ENDER_MATRIX_BLOCK).bucket(ModItems.ENDER_MATRIX_BUCKET) }
 
 
     class RetentionFluid(

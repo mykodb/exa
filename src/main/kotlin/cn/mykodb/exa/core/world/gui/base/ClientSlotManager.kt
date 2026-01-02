@@ -1,5 +1,4 @@
-package cn.mykodb.exa.core.world.gui
-
+package cn.mykodb.exa.core.world.gui.base
 
 import net.minecraft.world.inventory.Slot
 import java.util.WeakHashMap

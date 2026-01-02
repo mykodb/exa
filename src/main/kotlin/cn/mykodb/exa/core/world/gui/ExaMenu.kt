@@ -21,8 +21,7 @@ class ExaMenu(
 
     init {
         for (i in 0..35) {
-            val slot: Slot = Slot(playerInv, i, 0, 0)
-            playerInventorySlots.add(this.addSlot(slot))
+            playerInventorySlots.add(this.addSlot(Slot(playerInv, i, Int.MAX_VALUE, Int.MAX_VALUE)))
         }
     }
 
