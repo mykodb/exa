@@ -1,28 +1,21 @@
 package cn.mykodb.exa.core.event
 
-import cn.mykodb.exa.ExaMod.Companion.MODID
 import cn.mykodb.exa.core.register.ModFluidTypes
 import cn.mykodb.exa.core.register.ModFluids
-import cn.mykodb.exa.core.world.gui.ExaScreen
 import cn.mykodb.exa.core.register.ModMenuTypes
 import cn.mykodb.exa.core.world.fluid.EnderMatrixFluidType
+import cn.mykodb.exa.core.world.gui.ExaScreen
 import net.minecraft.client.renderer.ItemBlockRenderTypes
 import net.minecraft.client.renderer.RenderType
 import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
 import net.neoforged.fml.common.EventBusSubscriber
-import net.neoforged.fml.event.lifecycle.FMLClientSetupEvent
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent
+import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion.MOD_ID
 
-@EventBusSubscriber(modid = MODID, value = [Dist.CLIENT])
 object ClientEventHandler {
-    @SubscribeEvent
-    fun onClientEvent( event: FMLClientSetupEvent){
-
-    }
-
     @SubscribeEvent
     fun registerScreen(event: RegisterMenuScreensEvent) {
         // 注册屏幕绑定菜单

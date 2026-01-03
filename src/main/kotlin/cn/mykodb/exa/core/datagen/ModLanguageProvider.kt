@@ -10,7 +10,6 @@ import net.neoforged.neoforge.registries.DeferredHolder
 
 object ModLanguageProvider {
 
-
     class EnUs(output: PackOutput) : LanguageProvider(output, MODID, "en_us") {
         override fun addTranslations() {
             addEffect(ModEffects.TELEPORT, "Teleport")
@@ -26,7 +25,6 @@ object ModLanguageProvider {
             addPotions(ModPotions.TELEPORT_2,"传送药水","喷溅型传送药水","滞留型传送药水","传送之箭")
         }
     }
-
 
     fun LanguageProvider.addPotions(key: DeferredHolder<Potion,Potion>,baseName:String,splashName:String,lingeringName:String,arrowName:String ) {
         val path = key.id.path

@@ -10,8 +10,8 @@ import java.util.concurrent.CompletableFuture
 
 class ModRecipesProvider(
     output: PackOutput,
-    registries: CompletableFuture<HolderLookup.Provider>
-) : RecipeProvider(output, registries), IConditionBuilder {
+    lookupProvider: CompletableFuture<HolderLookup.Provider>
+) : RecipeProvider(output, lookupProvider), IConditionBuilder {
 
     override fun buildRecipes(recipeOutput: RecipeOutput) {
 

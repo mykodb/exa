@@ -2,14 +2,14 @@ package cn.mykodb.exa.core.world.gui
 
 import cn.mykodb.exa.core.world.gui.base.ClientSlotManager.clientX
 import cn.mykodb.exa.core.world.gui.base.ClientSlotManager.clientY
+import cn.mykodb.exa.core.world.gui.base.SlotManipulationScreen
 import net.minecraft.client.gui.GuiGraphics
-import net.minecraft.client.gui.screens.inventory.AbstractContainerScreen
 import net.minecraft.network.chat.Component
 import net.minecraft.world.entity.player.Inventory
 import net.minecraft.world.inventory.Slot
 
 class ExaScreen(menu: ExaMenu, playerInv: Inventory, title: Component) :
-    AbstractContainerScreen<ExaMenu>(menu,playerInv, title) {
+    SlotManipulationScreen<ExaMenu>(menu,playerInv, title) {
 
     private var hideGui: Boolean = false
 
@@ -28,20 +28,16 @@ class ExaScreen(menu: ExaMenu, playerInv: Inventory, title: Component) :
         }
     }
 
-
-
     override fun render(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
         super.render(guiGraphics, mouseX, mouseY, partialTick)
-
-        addPlayerInvLongSlots(this.menu.playerInventorySlots,-74, 130)
         addPlayerInvSlots(this.menu.playerInventorySlots,6, 86)
+        //addPlayerInvLongSlots(this.menu.playerInventorySlots,-74, 130)
         //addContainerSlots(this.menu.playerInventorySlots,6, 10)
     }
 
     override fun renderBackground(guiGraphics: GuiGraphics, mouseX: Int, mouseY: Int, partialTick: Float) {
 
     }
-
 
     fun addContainerSlots(slots:ArrayList<Slot>, x: Int, y: Int) {
         for (i in 0..<slots.count()) {

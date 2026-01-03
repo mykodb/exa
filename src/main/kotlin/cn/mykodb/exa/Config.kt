@@ -16,11 +16,9 @@ object Config {
         .comment("Int值：")
         .defineInRange("intValue", 1, 0, Int.MAX_VALUE)
 
-
     val stringValue: ModConfigSpec.ConfigValue<String> = BUILDER
         .comment("字符串：")
         .define("stringValue", "")
-
 
     val itemList: ModConfigSpec.ConfigValue<MutableList<out String?>> = BUILDER
         .comment("物品ID：")

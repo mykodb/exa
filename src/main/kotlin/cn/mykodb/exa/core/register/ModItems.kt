@@ -14,7 +14,7 @@ object ModItems {
     val OPEN_MENU_ITEM: DeferredItem<OpenMenuItem> = ModDeferredRegister.ITEMS.register("open_metal_item")
     { -> OpenMenuItem(Item.Properties()) }
 
-    val ENDER_MATRIX_BUCKET: DeferredItem<BucketItem> = ModDeferredRegister.ITEMS.register("rice_pulp_bucket")
+    val ENDER_MATRIX_BUCKET: DeferredItem<BucketItem> = ModDeferredRegister.ITEMS.register("ender_matrix_bucket")
     { ->
         BucketItem(
             ModFluids.ENDER_MATRIX.still.get(),
