@@ -1,7 +1,6 @@
 package cn.mykodb.exa.core.register
 
 import cn.mykodb.exa.core.ModDeferredRegister
-import cn.mykodb.exa.core.register.ModBlocks
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
 import net.minecraft.world.item.CreativeModeTabs
@@ -17,6 +16,7 @@ object ModCreativeModeTabs {
                 .icon { ModItems.OPEN_MENU_ITEM.get().defaultInstance }
                 .displayItems { _: CreativeModeTab.ItemDisplayParameters, output: CreativeModeTab.Output ->
                     output.accept(ModItems.ENDER_MATRIX_BUCKET)
+                    output.accept(ModItems.BATTERY_CELLS)
                     output.accept(ModItems.OPEN_MENU_ITEM)
                 }.build()
         })

@@ -2,6 +2,7 @@ package cn.mykodb.exa.core
 
 import cn.mykodb.exa.ExaMod
 import cn.mykodb.exa.core.register.*
+import net.minecraft.core.component.DataComponentType
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.core.registries.Registries
 import net.minecraft.world.effect.MobEffect
@@ -58,6 +59,9 @@ object ModDeferredRegister {
     val MENUS: DeferredRegister<MenuType<*>> =
         DeferredRegister.create(Registries.MENU, ExaMod.MODID)
 
+    val DATA_COMPONENT_TYPE: DeferredRegister<DataComponentType<*>> =
+        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE,ExaMod.MODID)
+
     fun register(modbus: IEventBus) {
         ITEMS.register(modbus)
         ModItems.register()
@@ -79,5 +83,7 @@ object ModDeferredRegister {
         ModEnchantments.register()
         MENUS.register(modbus)
         ModMenuTypes.register()
+        DATA_COMPONENT_TYPE.register(modbus)
+        ModDataComponentType.register()
     }
 }

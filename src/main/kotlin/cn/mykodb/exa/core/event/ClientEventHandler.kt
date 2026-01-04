@@ -34,7 +34,7 @@ object ClientEventHandler {
 
     @SubscribeEvent
     fun onRegisterClientExtensions( event: RegisterClientExtensionsEvent) {
-        // 大概在1.21后需要就需要注册液体类型扩展
+        // 注册液体类型扩展
         event.registerFluidType(
             EnderMatrixFluidType.RicePulpFluidTypeExtensions(),
             ModFluidTypes.ENDER_MATRIX_TYPE

@@ -11,6 +11,6 @@ class ModItemModelProvider(output: PackOutput, existingFileHelper: ExistingFileH
 
     override fun registerModels() {
         this.basicItem(ModItems.ENDER_MATRIX_BUCKET.get())
-
+        this.basicItem(ModItems.BATTERY_CELLS.get())
     }
 }

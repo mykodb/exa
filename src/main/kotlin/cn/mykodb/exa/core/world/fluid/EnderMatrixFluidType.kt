@@ -11,7 +11,7 @@ import net.neoforged.neoforge.common.SoundActions
 import net.neoforged.neoforge.fluids.FluidType
 
 class EnderMatrixFluidType: FluidType(Properties.create()
-    .descriptionId("block.fluid")
+    .descriptionId("block.fluid_type.ender_manager")
     .fallDistanceModifier(0.0f)
     .canExtinguish(true)
     .canConvertToSource(true)
