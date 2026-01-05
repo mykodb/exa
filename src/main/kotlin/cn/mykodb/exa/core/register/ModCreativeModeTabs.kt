@@ -12,12 +12,12 @@ object ModCreativeModeTabs {
         ModDeferredRegister.CREATIVE_MODE_TABS.register("exa_tab", Supplier {
             CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.exa"))
-                .withTabsBefore(CreativeModeTabs.COMBAT)
                 .icon { ModItems.OPEN_MENU_ITEM.get().defaultInstance }
                 .displayItems { _: CreativeModeTab.ItemDisplayParameters, output: CreativeModeTab.Output ->
                     output.accept(ModItems.ENDER_MATRIX_BUCKET)
                     output.accept(ModItems.BATTERY_CELLS)
                     output.accept(ModItems.OPEN_MENU_ITEM)
+                    output.accept(ModBlocks.LAVA_SINK)
                 }.build()
         })
 
