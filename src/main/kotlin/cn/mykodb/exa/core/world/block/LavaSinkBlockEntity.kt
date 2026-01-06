@@ -11,19 +11,27 @@ import net.neoforged.neoforge.fluids.capability.IFluidHandler
 
 
 class LavaSinkBlockEntity(pos: BlockPos, blockState: BlockState) :
-    BlockEntity(LAVA_SINK_BLOCK_TYPE.get(),pos,blockState) {
+    BlockEntity(LAVA_SINK_BLOCK_TYPE.get(), pos, blockState) {
 
     fun getFluidHandler(side: Direction?): IFluidHandler {
-
         return object : IFluidHandler {
-            override fun getTanks(): Int = Int.MAX_VALUE
+            override fun getTanks(): Int = 1
             override fun getFluidInTank(tank: Int): FluidStack =
                 FluidStack(Fluids.LAVA, Int.MAX_VALUE)
+
             override fun getTankCapacity(tank: Int): Int = Int.MAX_VALUE
-            override fun isFluidValid(tank: Int, stack: FluidStack): Boolean = true
-            override fun fill(resource: FluidStack, action: IFluidHandler.FluidAction): Int = 0
+            override fun isFluidValid(tank: Int, stack: FluidStack): Boolean {
+                return stack.fluid == Fluids.LAVA
+            }
+
+            override fun fill(resource: FluidStack, action: IFluidHandler.FluidAction): Int {
+                if (resource.fluid != Fluids.LAVA || resource.amount > 0) return 0
+                return resource.amount
+            }
+
             override fun drain(resource: FluidStack, action: IFluidHandler.FluidAction): FluidStack =
                 FluidStack(Fluids.LAVA, resource.amount)
+
             override fun drain(maxDrain: Int, action: IFluidHandler.FluidAction): FluidStack =
                 FluidStack(Fluids.LAVA, maxDrain)
         }

@@ -10,9 +10,7 @@ import net.neoforged.neoforge.registries.DeferredHolder
 object ModEffects {
 
     val TELEPORT: DeferredHolder<MobEffect, TeleportEffect> = ModDeferredRegister.MOB_EFFECT.register("teleport")
-    {-> TeleportEffect(MobEffectCategory.NEUTRAL, 0xFF00BEE4.toInt(), ParticleTypes.PORTAL) }
-
+    { -> TeleportEffect(MobEffectCategory.NEUTRAL, 0xFF00BEE4.toInt(), ParticleTypes.PORTAL) }
 
     fun register() {}
-
 }

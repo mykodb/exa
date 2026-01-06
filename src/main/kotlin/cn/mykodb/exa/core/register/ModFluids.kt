@@ -1,8 +1,6 @@
 package cn.mykodb.exa.core.register
 
 import cn.mykodb.exa.core.ModDeferredRegister
-import cn.mykodb.exa.core.register.ModBlocks
-import cn.mykodb.exa.core.register.ModFluidTypes
 import net.minecraft.world.level.material.FlowingFluid
 import net.neoforged.neoforge.fluids.BaseFlowingFluid
 import net.neoforged.neoforge.fluids.FluidType
@@ -11,19 +9,22 @@ import java.util.function.Supplier
 
 object ModFluids {
 
-    val ENDER_MATRIX= RetentionFluid("ender_matrix", ModFluidTypes.ENDER_MATRIX_TYPE)
-        .apply { properties.slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.ENDER_MATRIX_BLOCK).bucket(ModItems.ENDER_MATRIX_BUCKET) }
+    val ENDER_MATRIX = RetentionFluid("ender_matrix", ModFluidTypes.ENDER_MATRIX_TYPE)
+        .apply {
+            properties.slopeFindDistance(2).levelDecreasePerBlock(2).block(ModBlocks.ENDER_MATRIX_BLOCK)
+                .bucket(ModItems.ENDER_MATRIX_BUCKET)
+        }
 
 
     class RetentionFluid(
         name: String,
         fluidType: DeferredHolder<FluidType, *>
-    ){
+    ) {
         val still: Supplier<FlowingFluid> = ModDeferredRegister.FLUIDS.register(name)
-        {-> BaseFlowingFluid.Source(properties)}
+        { -> BaseFlowingFluid.Source(properties) }
 
         val flowing: Supplier<FlowingFluid> = ModDeferredRegister.FLUIDS.register("${name}_flow")
-        {-> BaseFlowingFluid.Flowing(properties)}
+        { -> BaseFlowingFluid.Flowing(properties) }
 
         val properties: BaseFlowingFluid.Properties = BaseFlowingFluid.Properties(fluidType, still, flowing)
     }

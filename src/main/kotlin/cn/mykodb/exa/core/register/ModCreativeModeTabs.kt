@@ -3,7 +3,6 @@ package cn.mykodb.exa.core.register
 import cn.mykodb.exa.core.ModDeferredRegister
 import net.minecraft.network.chat.Component
 import net.minecraft.world.item.CreativeModeTab
-import net.minecraft.world.item.CreativeModeTabs
 import net.neoforged.neoforge.registries.DeferredHolder
 import java.util.function.Supplier
 
@@ -12,7 +11,7 @@ object ModCreativeModeTabs {
         ModDeferredRegister.CREATIVE_MODE_TABS.register("exa_tab", Supplier {
             CreativeModeTab.builder()
                 .title(Component.translatable("itemGroup.exa"))
-                .icon { ModItems.OPEN_MENU_ITEM.get().defaultInstance }
+                .icon { ModItems.BATTERY_CELLS.get().defaultInstance }
                 .displayItems { _: CreativeModeTab.ItemDisplayParameters, output: CreativeModeTab.Output ->
                     output.accept(ModItems.ENDER_MATRIX_BUCKET)
                     output.accept(ModItems.BATTERY_CELLS)

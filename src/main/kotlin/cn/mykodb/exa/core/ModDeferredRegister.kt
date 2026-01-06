@@ -60,7 +60,7 @@ object ModDeferredRegister {
         DeferredRegister.create(Registries.MENU, ExaMod.MODID)
 
     val DATA_COMPONENT_TYPE: DeferredRegister<DataComponentType<*>> =
-        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE,ExaMod.MODID)
+        DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, ExaMod.MODID)
 
     fun register(modbus: IEventBus) {
         ITEMS.register(modbus)

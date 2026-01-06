@@ -11,7 +11,7 @@ import net.neoforged.neoforge.client.gui.ConfigurationScreen
 import net.neoforged.neoforge.client.gui.IConfigScreenFactory
 
 @Mod(value = MODID, dist = [Dist.CLIENT])
-class ExaClient(modEventBus: IEventBus,container: ModContainer) {
+class ExaClient(modEventBus: IEventBus, container: ModContainer) {
     init {
         modEventBus.register(ClientEventHandler)
         // 添加配置GUi

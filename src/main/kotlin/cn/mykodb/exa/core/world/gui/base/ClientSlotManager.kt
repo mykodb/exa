@@ -1,9 +1,9 @@
 package cn.mykodb.exa.core.world.gui.base
 
 import net.minecraft.world.inventory.Slot
-import java.util.WeakHashMap
+import java.util.*
 
-object ClientSlotManager{
+object ClientSlotManager {
     private val slotClientPositions = WeakHashMap<Slot, Pair<Int, Int>>()
 
     var Slot.clientX: Int

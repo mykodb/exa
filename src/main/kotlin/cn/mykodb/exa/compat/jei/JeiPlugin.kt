@@ -17,7 +17,7 @@ class JeiPlugin : IModPlugin {
 
     override fun registerGuiHandlers(registration: IGuiHandlerRegistration) {
         if (ExaScreen.isHideJei()) {
-            registration.addGuiScreenHandler(ExaScreen::class.java){null}
+            registration.addGuiScreenHandler(ExaScreen::class.java) { null }
         }
     }
 }

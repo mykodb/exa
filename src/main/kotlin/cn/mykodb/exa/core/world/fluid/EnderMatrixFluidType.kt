@@ -10,17 +10,18 @@ import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsE
 import net.neoforged.neoforge.common.SoundActions
 import net.neoforged.neoforge.fluids.FluidType
 
-class EnderMatrixFluidType: FluidType(Properties.create()
-    .descriptionId("block.fluid_type.ender_manager")
-    .fallDistanceModifier(0.0f)
-    .canExtinguish(true)
-    .canConvertToSource(true)
-    .supportsBoating(false)
-    .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
-    .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
-    .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
-    .canHydrate(true)
-    ){
+class EnderMatrixFluidType : FluidType(
+    Properties.create()
+        .descriptionId("block.fluid_type.ender_manager")
+        .fallDistanceModifier(0.0f)
+        .canExtinguish(true)
+        .canConvertToSource(true)
+        .supportsBoating(false)
+        .sound(SoundActions.BUCKET_FILL, SoundEvents.BUCKET_FILL)
+        .sound(SoundActions.BUCKET_EMPTY, SoundEvents.BUCKET_EMPTY)
+        .sound(SoundActions.FLUID_VAPORIZE, SoundEvents.FIRE_EXTINGUISH)
+        .canHydrate(true)
+) {
 
     /**
      * [initializeClient] 方法注册客户端扩展在1.21后弃用
@@ -42,6 +43,7 @@ class EnderMatrixFluidType: FluidType(Properties.create()
             private val WATER_FLOW = ResourceLocation.withDefaultNamespace("block/water_flow")
             private val WATER_OVERLAY = ResourceLocation.withDefaultNamespace("block/water_overlay")
         }
+
         override fun getStillTexture(): ResourceLocation = WATER_STILL
         override fun getFlowingTexture(): ResourceLocation = WATER_FLOW
         override fun getOverlayTexture(): ResourceLocation = WATER_OVERLAY

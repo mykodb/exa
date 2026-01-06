@@ -18,7 +18,7 @@ class OpenMenuItem(properties: Properties) : Item(properties) {
         if (!level.isClientSide && player is ServerPlayer) {
             player.openMenu(
                 SimpleMenuProvider(
-                    { containerId,playerInv, _ ->
+                    { containerId, playerInv, _ ->
                         ExaMenu(
                             containerId,
                             playerInv,

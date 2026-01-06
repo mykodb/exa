@@ -1,11 +1,8 @@
 package cn.mykodb.exa.core.register
 
-import cn.mykodb.exa.core.ModDeferredRegister
 import cn.mykodb.exa.core.ModDeferredRegister.ITEMS
-import cn.mykodb.exa.core.register.ModFluids
 import cn.mykodb.exa.core.world.item.BatteryCellsItem
 import cn.mykodb.exa.core.world.item.OpenMenuItem
-import net.minecraft.world.food.FoodProperties
 import net.minecraft.world.item.BucketItem
 import net.minecraft.world.item.Item
 import net.minecraft.world.item.Items

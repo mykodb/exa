@@ -7,13 +7,10 @@ import cn.mykodb.exa.core.world.fluid.EnderMatrixFluidType
 import cn.mykodb.exa.core.world.gui.ExaScreen
 import net.minecraft.client.renderer.ItemBlockRenderTypes
 import net.minecraft.client.renderer.RenderType
-import net.neoforged.api.distmarker.Dist
 import net.neoforged.bus.api.SubscribeEvent
-import net.neoforged.fml.common.EventBusSubscriber
 import net.neoforged.neoforge.client.event.RegisterColorHandlersEvent
 import net.neoforged.neoforge.client.event.RegisterMenuScreensEvent
 import net.neoforged.neoforge.client.extensions.common.RegisterClientExtensionsEvent
-import net.neoforged.neoforge.internal.versions.neoforge.NeoForgeVersion.MOD_ID
 
 object ClientEventHandler {
     @SubscribeEvent
@@ -33,7 +30,7 @@ object ClientEventHandler {
     }
 
     @SubscribeEvent
-    fun onRegisterClientExtensions( event: RegisterClientExtensionsEvent) {
+    fun onRegisterClientExtensions(event: RegisterClientExtensionsEvent) {
         // 注册液体类型扩展
         event.registerFluidType(
             EnderMatrixFluidType.RicePulpFluidTypeExtensions(),

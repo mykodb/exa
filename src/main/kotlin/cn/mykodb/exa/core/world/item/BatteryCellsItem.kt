@@ -11,12 +11,12 @@ import net.neoforged.neoforge.energy.ComponentEnergyStorage
 import net.neoforged.neoforge.energy.IEnergyStorage
 
 
-class BatteryCellsItem(properties: Properties): Item(
-    properties.component(ENERGY,0)
-){
+class BatteryCellsItem(properties: Properties) : Item(
+    properties.component(ENERGY, 0)
+) {
 
     fun createEnergyStorage(stack: ItemStack): IEnergyStorage {
-        return ComponentEnergyStorage(stack,ENERGY.get(),Int.MAX_VALUE)
+        return ComponentEnergyStorage(stack, ENERGY.get(), Int.MAX_VALUE, 4096, 4096)
     }
 
     override fun appendHoverText(
@@ -33,5 +33,4 @@ class BatteryCellsItem(properties: Properties): Item(
                 .append(Component.literal("$energyStored/$maxEnergyStored").withStyle(ChatFormatting.WHITE))
         )
     }
-    //Storage Energy:
 }

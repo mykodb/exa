@@ -21,7 +21,7 @@ abstract class SlotManipulationScreen<Menu : AbstractContainerMenu>(
     menu,
     playerInventory,
     title
-){
+) {
     override fun renderSlot(guiGraphics: GuiGraphics, slot: Slot) {
         val i = slot.clientX
         val j = slot.clientY
@@ -63,7 +63,8 @@ abstract class SlotManipulationScreen<Menu : AbstractContainerMenu>(
         if (itemStack.isEmpty && slot.isActive) {
             val pair = slot.noItemIcon
             if (pair != null) {
-                val textureAtlasSprite = this.minecraft!!.getTextureAtlas(pair.getFirst()).apply(pair.getSecond()) as TextureAtlasSprite
+                val textureAtlasSprite =
+                    this.minecraft!!.getTextureAtlas(pair.getFirst()).apply(pair.getSecond()) as TextureAtlasSprite
                 guiGraphics.blit(i, j, 0, 16, 16, textureAtlasSprite)
                 flag1 = true
             }
@@ -90,14 +91,20 @@ abstract class SlotManipulationScreen<Menu : AbstractContainerMenu>(
         super.renderSlotContents(guiGraphics, itemstack, slot, countString)
     }
 
-    override fun renderSlotHighlight(guiGraphics: GuiGraphics, slot: Slot, mouseX: Int, mouseY: Int, partialTick: Float) {
+    override fun renderSlotHighlight(
+        guiGraphics: GuiGraphics,
+        slot: Slot,
+        mouseX: Int,
+        mouseY: Int,
+        partialTick: Float
+    ) {
         if (slot.isHighlightable) {
             renderSlotHighlight(guiGraphics, slot.clientX, slot.clientY, 0, getSlotColor(slot.index))
         }
     }
 
     override fun isHovering(slot: Slot, mouseX: Double, mouseY: Double): Boolean {
-        return this.isHovering(slot.clientX, slot.clientY,16,16,mouseX, mouseY)
+        return this.isHovering(slot.clientX, slot.clientY, 16, 16, mouseX, mouseY)
     }
 
 }

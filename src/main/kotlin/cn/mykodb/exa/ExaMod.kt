@@ -1,7 +1,6 @@
 package cn.mykodb.exa
 
 import cn.mykodb.exa.core.ModDeferredRegister
-import cn.mykodb.exa.core.event.ClientEventHandler
 import cn.mykodb.exa.core.event.CommonEventHandler
 import net.neoforged.bus.api.IEventBus
 import net.neoforged.fml.ModContainer

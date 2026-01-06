@@ -3,7 +3,6 @@ package cn.mykodb.exa
 import net.minecraft.core.registries.BuiltInRegistries
 import net.minecraft.resources.ResourceLocation
 import net.neoforged.neoforge.common.ModConfigSpec
-import kotlin.text.matches
 
 object Config {
     val BUILDER: ModConfigSpec.Builder = ModConfigSpec.Builder()
@@ -27,6 +26,8 @@ object Config {
     val SPEC: ModConfigSpec = BUILDER.build()
 
     private fun validateItemName(obj: Any): Boolean {
-        return obj is String && obj.matches(Regex("[a-z0-9_]+:[a-z0-9_]+")) && BuiltInRegistries.ITEM.containsKey(ResourceLocation.parse(obj))
+        return obj is String && obj.matches(Regex("[a-z0-9_]+:[a-z0-9_]+")) && BuiltInRegistries.ITEM.containsKey(
+            ResourceLocation.parse(obj)
+        )
     }
 }
