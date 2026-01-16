@@ -12,7 +12,9 @@ import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
 
 object ModBlocks {
-    val LAVA_SINK = registerSimpleBlockItem("lava_sink", ::LavaSinkBlock)
+
+    val CHEESE_BLOCK =  registerBlockItem("cheese_block")
+    val LAVA_SINK = registerBlockItem("lava_sink", ::LavaSinkBlock)
 
     val ENDER_MATRIX_BLOCK: DeferredBlock<LiquidBlock> = ModDeferredRegister.BLOCKS.register("rice_pulp_block")
     { ->
@@ -21,15 +23,14 @@ object ModBlocks {
             BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).lightLevel { 15 })
     }
 
-    fun registerSimpleBlockItem(
+    fun registerBlockItem(
         name: String,
-        func: (BlockBehaviour.Properties) -> Block,
+        block: (BlockBehaviour.Properties) -> Block = ::Block,
         blockProps: BlockBehaviour.Properties = BlockBehaviour.Properties.of(),
         properties: Item.Properties = Item.Properties()
     ): DeferredItem<BlockItem> {
-        val block = ModDeferredRegister.BLOCKS.registerBlock(name, func, blockProps)
-        val blockItem = ModDeferredRegister.ITEMS.registerSimpleBlockItem(block, properties)
-        return blockItem
+        val block = ModDeferredRegister.BLOCKS.registerBlock(name,block,blockProps)
+        return ModDeferredRegister.ITEMS.registerSimpleBlockItem(block,properties)
     }
 
     fun register() {}

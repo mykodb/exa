@@ -14,9 +14,5 @@ class ModItemModelProvider(output: PackOutput, existingFileHelper: ExistingFileH
     override fun registerModels() {
         basicItem(ModItems.ENDER_MATRIX_BUCKET.get())
         basicItem(ModItems.BATTERY_CELLS.get())
-        withExistingParent(
-            ModBlocks.LAVA_SINK.registeredName,  // 模型名称
-            ResourceLocation.fromNamespaceAndPath(MODID, "block/lava_sink")  // 父模型
-        )
     }
 }

@@ -59,6 +59,7 @@ object ModDeferredRegister {
     val MENUS: DeferredRegister<MenuType<*>> =
         DeferredRegister.create(Registries.MENU, ExaMod.MODID)
 
+    // 数据组件
     val DATA_COMPONENT_TYPE: DeferredRegister<DataComponentType<*>> =
         DeferredRegister.create(Registries.DATA_COMPONENT_TYPE, ExaMod.MODID)
 

@@ -12,10 +12,11 @@ class ModBlockStateProvider(output: PackOutput, exFileHelper: ExistingFileHelper
 
     override fun registerStatesAndModels() {
 
-        horizontalBlock(
+        simpleBlockWithItem(
             ModBlocks.LAVA_SINK.get().block,
             models().getExistingFile(modLoc("block/lava_sink"))
         )
+
 
     }
 }
