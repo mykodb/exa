@@ -9,10 +9,11 @@ object ModBlockEntityType {
 
     val LAVA_SINK_BLOCK_TYPE: DeferredHolder<BlockEntityType<*>, BlockEntityType<LavaSinkBlockEntity>> =
         BLOCK_ENTITY_TYPE.register("lava_sink_block_entity") { ->
-            BlockEntityType.Builder.of(
-                ::LavaSinkBlockEntity,
+
+            BlockEntityType(
+                ::LavaSinkBlockEntity,false,
                 ModBlocks.LAVA_SINK.get().block
-            ).build(null)
+            )
         }
 
     fun register() {}

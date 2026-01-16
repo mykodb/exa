@@ -3,6 +3,7 @@ package cn.mykodb.exa.core.world.effect
 import cn.mykodb.exa.core.register.ModEffects
 import net.minecraft.core.BlockPos
 import net.minecraft.core.particles.ParticleOptions
+import net.minecraft.server.level.ServerLevel
 import net.minecraft.world.effect.MobEffect
 import net.minecraft.world.effect.MobEffectCategory
 import net.minecraft.world.entity.LivingEntity
@@ -16,10 +17,10 @@ class TeleportEffect(category: MobEffectCategory, color: Int, particle: Particle
     // 获取上方安全的坐标
     fun getAboveSafePos(startPos: Vec3, level: Level): Vec3? {
         var searchY: Double = startPos.y
-        if (searchY < level.minBuildHeight) {
-            searchY = level.minBuildHeight.toDouble()
+        if (searchY < level.minY) {
+            searchY = level.minY.toDouble()
         }
-        while (searchY < level.maxBuildHeight) {
+        while (searchY < level.maxY) {
             val currentPos = BlockPos.containing(startPos.x, searchY, startPos.z)
             val blockState = level.getBlockState(currentPos)
             val collisionShape = blockState.getCollisionShape(level, currentPos, CollisionContext.empty())
@@ -58,8 +59,7 @@ class TeleportEffect(category: MobEffectCategory, color: Int, particle: Particle
         return false
     }
 
-    override fun applyEffectTick(livingEntity: LivingEntity, amplifier: Int): Boolean {
-        val level = livingEntity.level()
+    override fun applyEffectTick(level: ServerLevel, livingEntity: LivingEntity, amplifier: Int): Boolean {
         val random = livingEntity.random
         val lookVec = livingEntity.lookAngle
         val baseRange = (amplifier * 16) + 16
@@ -94,7 +94,7 @@ class TeleportEffect(category: MobEffectCategory, color: Int, particle: Particle
             livingEntity.randomTeleportTo(startPos, baseRange)
         }
         livingEntity.removeEffect(ModEffects.TELEPORT)
-        return super.applyEffectTick(livingEntity, amplifier)
+        return super.applyEffectTick(level,livingEntity,amplifier)
     }
 
     override fun shouldApplyEffectTickThisTick(duration: Int, amplifier: Int): Boolean {

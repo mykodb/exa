@@ -1,9 +1,7 @@
 package cn.mykodb.exa.core.event
 
-import cn.mykodb.exa.core.datagen.ModBlockStateProvider
-import cn.mykodb.exa.core.datagen.ModItemModelProvider
 import cn.mykodb.exa.core.datagen.ModLanguageProvider
-import cn.mykodb.exa.core.datagen.ModRecipesProvider
+import cn.mykodb.exa.core.datagen.ModModelProvider
 import cn.mykodb.exa.core.register.ModBlocks
 import cn.mykodb.exa.core.register.ModItems
 import cn.mykodb.exa.core.register.ModPotions
@@ -19,16 +17,6 @@ import net.neoforged.neoforge.event.brewing.RegisterBrewingRecipesEvent
 
 
 object CommonEventHandler {
-    @SubscribeEvent
-    fun onGatherData(event: GatherDataEvent) {
-        // 数据生成
-        val existingFileHelper = event.existingFileHelper
-        event.createProvider(ModLanguageProvider::EnUs)
-        event.createProvider(ModLanguageProvider::ZhCn)
-        event.createProvider(::ModRecipesProvider)
-        event.createProvider { output -> ModItemModelProvider(output, existingFileHelper) }
-        event.createProvider { output -> ModBlockStateProvider(output, existingFileHelper) }
-    }
 
     @SubscribeEvent
     fun registerCapabilities(event: RegisterCapabilitiesEvent) {

@@ -1,6 +1,7 @@
 package cn.mykodb.exa.core.register
 
 import cn.mykodb.exa.core.ModDeferredRegister
+import cn.mykodb.exa.core.ModDeferredRegister.BLOCKS
 import cn.mykodb.exa.core.world.block.LavaSinkBlock
 import net.minecraft.world.item.BlockItem
 import net.minecraft.world.item.Item
@@ -12,24 +13,22 @@ import net.neoforged.neoforge.registries.DeferredBlock
 import net.neoforged.neoforge.registries.DeferredItem
 
 object ModBlocks {
-    val LAVA_SINK = registerSimpleBlockItem("lava_sink", ::LavaSinkBlock)
+    val LAVA_SINK: DeferredItem<BlockItem> = registerBlockItem("lava_sink",::LavaSinkBlock)
 
-    val ENDER_MATRIX_BLOCK: DeferredBlock<LiquidBlock> = ModDeferredRegister.BLOCKS.register("rice_pulp_block")
-    { ->
-        LiquidBlock(
-            ModFluids.ENDER_MATRIX.still.get(),
-            BlockBehaviour.Properties.ofFullCopy(Blocks.WATER).lightLevel { 15 })
-    }
+    val ENDER_MATRIX_BLOCK: DeferredBlock<LiquidBlock> = BLOCKS.registerBlock("ender_matrix_block",
+        { properties -> LiquidBlock(ModFluids.ENDER_MATRIX.still.get(), properties.lightLevel { 15 }) },
+        BlockBehaviour.Properties.ofFullCopy(Blocks.WATER)
+    )
 
-    fun registerSimpleBlockItem(
+
+    fun registerBlockItem(
         name: String,
-        func: (BlockBehaviour.Properties) -> Block,
+        block: (BlockBehaviour.Properties) -> Block = ::Block,
         blockProps: BlockBehaviour.Properties = BlockBehaviour.Properties.of(),
         properties: Item.Properties = Item.Properties()
-    ): DeferredItem<BlockItem> {
-        val block = ModDeferredRegister.BLOCKS.registerBlock(name, func, blockProps)
-        val blockItem = ModDeferredRegister.ITEMS.registerSimpleBlockItem(block, properties)
-        return blockItem
+        ): DeferredItem<BlockItem> {
+        val block = BLOCKS.registerBlock(name,block,blockProps)
+        return ModDeferredRegister.ITEMS.registerSimpleBlockItem(block,properties)
     }
 
     fun register() {}
